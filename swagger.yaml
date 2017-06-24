@@ -1,0 +1,67 @@
+swagger: "2.0"
+info:
+  description: "Simple Messaging API"
+  version: "1.0.0"
+  title: "Messaging API"
+host: "virtserver.swaggerhub.com"
+schemes:
+ - https
+
+paths:
+  /hello:
+    post:
+      description: "Set conversation informations"
+      operationId: "controllers.default_controller.hello_post"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Username and fine value is passed"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "Conversation information received"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Bad Request"
+  /how:
+    post:
+      description: "Asks how user is."
+      operationId: "controllers.default_controller.how_post"
+      parameters:
+       - in: "body"
+         name: "body"
+         description: "Username"
+         required: true
+         schema:
+          $ref: "#/definitions/Howuser"
+      responses:
+        200:
+         description: "Conversation information received"
+         schema:
+           $ref: "#/definitions/Howuser"
+        404:
+          description: "Not Found!"
+definitions:
+  User:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      fine:
+        type: "boolean"
+  Howuser:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      situations:
+        type: "array"
+        items:
+          type: "string"
+# Added by API Auto Mocking Plugin
+
